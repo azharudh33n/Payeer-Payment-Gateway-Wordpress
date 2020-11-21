@@ -4,7 +4,7 @@
     Plugin URI: https://payeer.com
     Description: Module for accepting payments in the payment system Payeer.
     Version: 1.0.0
-    Author: Muahammed Azharudheen
+    Author: Muahammed Azharudheen K J
     Author URI: 
 */
 
@@ -217,7 +217,7 @@ function woocommerce_payeer()
 					$err = false;
 					$message = '';
 					
-					// запись логов
+					
 					
 					$log_text = 
 						"--------------------------------------------------------\n" .
