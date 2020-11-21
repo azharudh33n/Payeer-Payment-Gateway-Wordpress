@@ -28,8 +28,39 @@ function misha_init_gateway_class() {
  		 * Class constructor, more about it in Step 3
  		 */
  		public function __construct() {
- 
-		...
+			
+			$this->id = 'payeer';  // payment gateway plugin ID
+			$this->icon = apply_filters('woocommerce_payeer_icon', $plugin_dir . 'payeer.png'); // URL of the icon that will be displayed on checkout page near your gateway name
+			$this->has_fields = false; // in case you need a custom credit card form
+			$this->method_title = 'Payeer payment Gateway';
+			$this->method_description = 'Description of Payeer payment gateway'; // will be displayed on the options page
+
+			// Method with all the options fields
+			$this->init_form_fields();
+
+			// Load the settings.
+			$this->init_settings();
+			$this->title = $this->get_option('title');
+			$this->description = $this->get_option( 'description' );
+			$this->payeer_url = $this->get_option('payeer_url');
+			$this->payeer_merchant = $this->get_option('payeer_merchant');
+			$this->payeer_secret_key = $this->get_option('payeer_secret_key');
+			$this->email_error = $this->get_option('email_error');
+			$this->ip_filter = $this->get_option('ip_filter');
+			$this->log_file = $this->get_option('log_file');
+
+			add_action('woocommerce_receipt_' . $this->id, array($this, 'receipt_page'));
+			add_action( 'woocommerce_update_options_payment_gateways_' . $this->id, array( $this, 'process_admin_options' ) ); // This action hook saves the settings
+			add_action('woocommerce_api_wc_' . $this->id, array($this, 'check_ipn_response'));
+
+		 
+			
+		 
+			// We need custom JavaScript to obtain a token
+			add_action( 'wp_enqueue_scripts', array( $this, 'payment_scripts' ) );
+		 
+			// You can also register a webhook here
+			// add_action( 'woocommerce_api_{webhook name}', array( $this, 'webhook' ) );
  
  		}
  
