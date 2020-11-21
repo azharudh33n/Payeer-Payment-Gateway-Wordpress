@@ -1,1 +1,1 @@
-# Payeer-Payment-Gateway-Wordpress
+# Payeer-Payment-Gateway-Wordpress Plugin
