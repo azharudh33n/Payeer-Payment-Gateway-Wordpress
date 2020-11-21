@@ -1,1 +1,1 @@
-# Payeer Payment Gateway Wordpress Plugin
+# Payeer Payment Gateway Wordpress Plugin ( Testing )
