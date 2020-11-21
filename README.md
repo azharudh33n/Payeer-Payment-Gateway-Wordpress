@@ -19,11 +19,15 @@ Or 	*.*.*.* - available to all IP addresses
 Enter your email address to receive notices in the event of a payment error. The letter will state the reason and basic information about the payment. 
 Enter the URL address in the “account Payeer → API → Merchant settings”
 
+<br>
 Success URL: 
 https://*****/?wc-api=wc_payeer&payeer=calltrue
+<br>
  Fail URL: 
 https://*****/?wcapi=wc_payeer&payeer=callfalse
+<br>
  Status URL: 
 https://*****/?wc-api=wc_payeer&payeer=result
+<br>
 Where ***** is your domain.
 
