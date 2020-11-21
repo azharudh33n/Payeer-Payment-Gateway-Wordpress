@@ -192,7 +192,8 @@ function woocommerce_payeer()
 		
 		function process_payment($order_id)
 		{
-			$order = new WC_Order($order_id);
+			global $woocommerce;
+    		$order = new WC_Order( $order_id );
 
 			return array(
 				'result' => 'success',
