@@ -57,7 +57,6 @@ function misha_init_gateway_class() {
 			
 		 
 			// We need custom JavaScript to obtain a token
-			add_action( 'wp_enqueue_scripts', array( $this, 'payment_scripts' ) );
 		 
 			// You can also register a webhook here
 			// add_action( 'woocommerce_api_{webhook name}', array( $this, 'webhook' ) );
@@ -69,7 +68,63 @@ function misha_init_gateway_class() {
  		 */
  		public function init_form_fields(){
  
-		...
+			$this->form_fields = array(
+				'enabled' => array(
+					'title' => __('Enable/Disable', 'woocommerce'),
+					'type' => 'checkbox',
+					'label' => __('Included', 'woocommerce'),
+					'default' => 'yes'
+				),
+				'title' => array(
+					'title' => __('Name', 'woocommerce'),
+					'type' => 'text', 
+					'description' => __( 'This is the name that the user sees when selecting a payment method.', 'woocommerce' ), 
+					'default' => __('Payeer', 'woocommerce')
+				),
+				'payeer_url' => array(
+					'title' => __('URL of the merchant', 'woocommerce'),
+					'type' => 'text',
+					'description' => __('url to payment system Payeer', 'woocommerce'),
+					'default' => 'https://payeer.com/merchant/'
+				),
+				'payeer_merchant' => array(
+					'title' => __('ID of the store', 'woocommerce'),
+					'type' => 'text',
+					'description' => __('Identifier of store registered in the system "PAYEER".<br/>Get it in <a href="https://payeer.com/account/">Payeer account</a>: the "Account -> Merchant -> Settings".', 'woocommerce'),
+					'default' => ''
+				),
+				'payeer_secret_key' => array(
+					'title' => __('Secret key', 'woocommerce'),
+					'type' => 'password',
+					'description' => __('The secret key notification that payment has been made,<br/>which is used to check the integrity of received information<br/>and unequivocal identification of the sender.<br/>Must match the secret key specified in <a href="https://payeer.com/account/">Payeer account</a>: the "Account -> Merchant -> Settings".', 'woocommerce'),
+					'default' => ''
+				),
+				'log_file' => array(
+					'title' => __('Path to file to log payments via Payeer (for example, /payeer_orders.log)', 'woocommerce'),
+					'type' => 'text',
+					'description' => __('If the path is not specified, the log is not written', 'woocommerce'),
+					'default' => ''
+				),
+				'ip_filter' => array(
+					'title' => __('IP filter', 'woocommerce'),
+					'type' => 'text',
+					'description' => __('The list of trusted ip addresses, you can specify a mask', 'woocommerce'),
+					'default' => ''
+				),
+				'email_error' => array(
+					'title' => __('Email for bugs', 'woocommerce'),
+					'type' => 'text',
+					'description' => __('Email to send payment errors', 'woocommerce'),
+					'default' => ''
+				),
+				'description' => array(
+					'title' => __( 'Description', 'woocommerce' ),
+					'type' => 'textarea',
+					'description' => __( 'A description of the method of payment which the customer will see on your website.', 'woocommerce' ),
+					'default' => 'Payment via Payeer'
+				)
+			);
+		}
  
 	 	}
  
